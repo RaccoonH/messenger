@@ -1,0 +1,10 @@
+#ifndef SETTINGSUI_H
+#define SETTINGSUI_H
+
+#pragma once
+
+#define WIDTH_CLIENTLIST 250
+#define MAX_HEIGHT_ENTRYFIELD 75
+#define MAX_HEIGHT_HEADLINE 50
+
+#endif // SETTINGSUI_H
