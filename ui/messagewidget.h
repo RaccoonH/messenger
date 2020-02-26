@@ -4,18 +4,20 @@
 #include <QWidget>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <message.h>
 
 class MessageWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MessageWidget(QWidget *parent = nullptr);
+    explicit MessageWidget(Message *msg, QWidget *parent = nullptr);
 
 public:
 
 private:
     QHBoxLayout *_layout;
     QLabel *_text;
+    Message *_msg;
 
 };
 

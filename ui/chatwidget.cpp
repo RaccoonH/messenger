@@ -1,4 +1,5 @@
 #include "chatwidget.h"
+#include <QDebug>
 
 ChatWidget::ChatWidget(QWidget *parent) : QScrollArea(parent)
 {
@@ -9,18 +10,40 @@ ChatWidget::ChatWidget(QWidget *parent) : QScrollArea(parent)
     setPalette(_pall);
     setAutoFillBackground(true);
 
-    for(int i = 0; i < 15; i++)
-    {
-        addNewMessage();
-    }
+    ///visual settings
+    _layout->setAlignment(Qt::AlignTop);
+    _layout->setSpacing(2);
+    _layout->setMargin(0);
+    _layout->setSizeConstraint(QLayout::SetFixedSize);
+
     setWidget(_widget);
 }
 
-void ChatWidget::addNewMessage()
+void ChatWidget::addNewMessage(Message *msg)
 {
-    ///test messages, need class msgWidget
-    MessageWidget *message = new MessageWidget(this);
+    MessageWidget *message = new MessageWidget(msg, this);
+    _listOfMsgWidget.append(message);
     _layout->addWidget(message);
+}
+
+void ChatWidget::selectChat(Chat *chat)
+{
+    _chat = chat;
+    clearChat();
+    qDebug() << chat->getListOfMessages().count();
+    for(int i = 0; i < chat->getListOfMessages().count(); i++)
+    {
+        addNewMessage(chat->getListOfMessages()[i]);
+    }
+}
+
+void ChatWidget::clearChat()
+{
+    for(int i = 0; i < _listOfMsgWidget.count(); i++)
+    {
+        delete _listOfMsgWidget[i];
+    }
+    _listOfMsgWidget.clear();
 }
 
 ChatWidget::~ChatWidget()

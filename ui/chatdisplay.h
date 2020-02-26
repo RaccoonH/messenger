@@ -8,6 +8,7 @@
 #include <QTextEdit>
 #include "ui/settingsui.h"
 #include "ui/chatwidget.h"
+#include "chat.h"
 
 class ChatDisplay : public QWidget
 {
@@ -17,6 +18,7 @@ public:
     ~ChatDisplay();
 
 public:
+    void addNewChat(Chat *chat);
 
 private:
     QPalette _pall;
@@ -24,6 +26,8 @@ private:
     QWidget *_headLine;
     QWidget *_entryField;
     ChatWidget *_chatWidget;
+    Chat *_chat;
+
 
 private:
     QWidget *createHeadline(QWidget* parent);

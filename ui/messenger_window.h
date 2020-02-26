@@ -15,6 +15,9 @@ public:
     explicit MessengerWindow(QWidget *parent = 0);
         ~MessengerWindow();
 
+private slots:
+    void addNewChat(ClientLabel *label);
+
 private:
     QHBoxLayout *_messengerWindowLayout;
     ClientList *_clientList;

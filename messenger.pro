@@ -25,16 +25,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        chat.cpp \
         main.cpp \
+        message.cpp \
         ui/chatdisplay.cpp \
         ui/chatwidget.cpp \
         ui/clientlabel.cpp \
         ui/clientlist.cpp \
         ui/mainwindow.cpp \
         ui/messagewidget.cpp \
-        ui/messenger_window.cpp
+        ui/messenger_window.cpp \
+        user.cpp \
+        userinfo.cpp
 
 HEADERS += \
+        chat.h \
+        message.h \
         ui/chatdisplay.h \
         ui/chatwidget.h \
         ui/clientlabel.h \
@@ -42,7 +48,9 @@ HEADERS += \
         ui/mainwindow.h \
         ui/messagewidget.h \
         ui/messenger_window.h \
-        ui/settingsui.h
+        ui/settingsui.h \
+        user.h \
+        userinfo.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

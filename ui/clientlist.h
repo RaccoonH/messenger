@@ -16,12 +16,15 @@ public:
     ~ClientList();
 
 public:
-    void addNewClient(QString name);
+    void addNewClient(unsigned int id, UserInfo *userInfo, Chat *chat);
 
 private:
     QPalette _pall;
     QVBoxLayout *_layout;
     QWidget *_clientListWidget;
+
+signals:
+    void addedNewClient(ClientLabel *clientLabel);
 };
 
 #endif // CLIENTLIST_H

@@ -49,6 +49,11 @@ QWidget* ChatDisplay::createEntryField(QWidget *parent)
     return entryField;
 }
 
+void ChatDisplay::addNewChat(Chat *chat)
+{
+    _chatWidget->selectChat(chat);
+}
+
 ChatDisplay::~ChatDisplay()
 {
 
