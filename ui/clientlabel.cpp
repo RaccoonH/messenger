@@ -9,8 +9,7 @@ ClientLabel::ClientLabel(unsigned int id, UserInfo *userInfo, Chat *chat, QWidge
 
     _user = new User(id, userInfo, chat);
     _pall.setColor(QPalette::Window, Qt::blue);
-    _label->setText(_user->getUserInfo()->getName());
-
+    _label->setText(_user->getInfo()->getName());
 
     setMouseTracking(true);
 }

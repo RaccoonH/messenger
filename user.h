@@ -4,20 +4,16 @@
 #include <QString>
 #include "chat.h"
 #include "userinfo.h"
+#include "client.h"
 
-class User
+class User : public Client
 {
 public:
     User(unsigned int id, UserInfo *userInfo, Chat *chat);
     ~User();
 
-    UserInfo* getUserInfo();
+    ClientInfo* getInfo();
     Chat* getChat();
-
-private:
-    unsigned int _id;
-    UserInfo *_userInfo;
-    Chat *_chat;
 
 };
 

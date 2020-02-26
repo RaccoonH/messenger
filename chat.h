@@ -9,6 +9,7 @@ class Chat
 public:
     Chat();
     ~Chat();
+
     void addMessage(Message* msg);
     Message* getMessage();
     QList<Message*> getListOfMessages();

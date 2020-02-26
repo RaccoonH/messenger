@@ -24,7 +24,7 @@ MessengerWindow::MessengerWindow(QWidget *parent) : QWidget(parent)
         Chat *chat = new Chat();
         for(int j = 0; j < 2; j++)
         {
-            chat->addMessage(new Message(QString::number(i) + " 1488ss"));
+            chat->addMessage(new Message(QString::number(i) + QString::number(j) + " 1488ss"));
         }
         _clientList->addNewClient(i, userInfo, chat);
     }

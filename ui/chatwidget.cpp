@@ -11,9 +11,11 @@ ChatWidget::ChatWidget(QWidget *parent) : QScrollArea(parent)
     setAutoFillBackground(true);
 
     ///visual settings
-    _layout->setAlignment(Qt::AlignTop);
+    _layout->setAlignment(Qt::AlignBottom);
     _layout->setSpacing(2);
     _layout->setMargin(0);
+    _layout->setDirection(QBoxLayout::BottomToTop);
+
     _layout->setSizeConstraint(QLayout::SetFixedSize);
 
     setWidget(_widget);

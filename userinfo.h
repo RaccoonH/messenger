@@ -2,8 +2,9 @@
 #define USERINFO_H
 
 #include <QString>
+#include "clientinfo.h"
 
-class UserInfo
+class UserInfo : public ClientInfo
 {
 public:
     UserInfo(QString name, QString desc);
@@ -11,10 +12,6 @@ public:
     QString getDesc();
     void setName(QString name);
     void setDesc(QString desc);
-
-private:
-    QString _name;
-    QString _desc;
 
 };
 

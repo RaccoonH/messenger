@@ -4,13 +4,13 @@
 User::User(unsigned int id, UserInfo *userInfo, Chat *chat)
 {
     _id = id;
-    _userInfo = userInfo;
+    _info = userInfo;
     _chat = chat;
 }
 
-UserInfo* User::getUserInfo()
+ClientInfo* User::getInfo()
 {
-    return _userInfo;
+    return _info;
 }
 
 Chat* User::getChat()
@@ -20,6 +20,6 @@ Chat* User::getChat()
 
 User::~User()
 {
-    delete  _userInfo;
+    delete  _info;
     delete _chat;
 }

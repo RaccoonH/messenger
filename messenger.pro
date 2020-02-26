@@ -26,6 +26,8 @@ CONFIG += c++11
 
 SOURCES += \
         chat.cpp \
+        client.cpp \
+        clientinfo.cpp \
         main.cpp \
         message.cpp \
         ui/chatdisplay.cpp \
@@ -40,6 +42,8 @@ SOURCES += \
 
 HEADERS += \
         chat.h \
+        client.h \
+        clientinfo.h \
         message.h \
         ui/chatdisplay.h \
         ui/chatwidget.h \
