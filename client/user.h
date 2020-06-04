@@ -9,11 +9,12 @@
 class User : public Client
 {
 public:
-    User(unsigned int id, UserInfo *userInfo, Chat *chat);
+    User(UserInfo *userInfo = 0, Chat *chat = 0);
     ~User();
 
     ClientInfo* getInfo();
     Chat* getChat();
+    void setChat(Chat*);
 
 };
 

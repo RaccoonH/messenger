@@ -4,7 +4,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     Server *serv = new Server(this);
-    serv->startServer(QHostAddress::LocalHost, 1234);
+    serv->startServer(QHostAddress::AnyIPv4, 1234);
 
 }
 

@@ -11,13 +11,13 @@ public:
 
     virtual Chat* getChat() = 0;
     virtual ClientInfo* getInfo() = 0;
+    virtual void setChat(Chat*) = 0;
 
     virtual ~Client() = 0;
 
 protected:
     Chat *_chat;
     ClientInfo *_info;
-    unsigned int _id;
 
 };
 

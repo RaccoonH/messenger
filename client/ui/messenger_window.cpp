@@ -1,5 +1,4 @@
 #include "messenger_window.h"
-#include <QDebug>
 
 MessengerWindow::MessengerWindow(QWidget *parent) : QWidget(parent)
 {
@@ -14,27 +13,51 @@ MessengerWindow::MessengerWindow(QWidget *parent) : QWidget(parent)
     _messengerWindowLayout->addWidget(_clientList);
     _messengerWindowLayout->addWidget(_chatDisplay);
 
+    //connect(Connector::getInstance(), &Connector::loadedClientList, this, &MessengerWindow::onLoadedClientList);
+    connect(_clientList, &ClientList::addedNewClient, this, &MessengerWindow::onAddedNewClient);
+    connect(_chatDisplay, &ChatDisplay::changedInfo, _clientList, &ClientList::onChangedInfo);
+    connect(_chatDisplay, &ChatDisplay::deletedClient, _clientList, &ClientList::onDeletedClient);
+    //connect(Connector::getInstance(), &Connector::loadedDialogChat, _chatDisplay, &ChatDisplay::onLoadedDialogChat);
+    //connect(Connector::getInstance(), &Connector::loadedGroupChat, _chatDisplay, &ChatDisplay::onLoadedGroupChat);
+    //connect(Connector::getInstance(), &Connector::loadedChannelChat, _chatDisplay, &ChatDisplay::onLoadedChannelChat);
 
-    connect(_clientList, &ClientList::addedNewClient, this, &MessengerWindow::addNewChat);
+    connect(Connector::getInstance(), &Connector::loadedNewDialogMessage, _chatDisplay, &ChatDisplay::onLoadedNewDialogMessage);
+    connect(Connector::getInstance(), &Connector::loadedNewGroupMessage, _chatDisplay, &ChatDisplay::onLoadedNewGroupMessage);
+    connect(Connector::getInstance(), &Connector::loadedNewChannelMessage, _chatDisplay, &ChatDisplay::onLoadedNewChannelMessage);
 
-    ///test Create User Info
-    for(int i = 0; i < 10; i++)
-    {
-        UserInfo *userInfo = new UserInfo("testName", "testDesc");
-        Chat *chat = new Chat();
-        for(int j = 0; j < 2; j++)
-        {
-            chat->addMessage(new Message(QString::number(i) + QString::number(j) + " 1488ss"));
-        }
-        _clientList->addNewClient(i, userInfo, chat);
-    }
+    connect(Connector::getInstance(), &Connector::loadedNewClientInfo, _clientList, &ClientList::onChangedInfo);
+	connect(Connector::getInstance(), &Connector::deletedFromClient, _clientList, &ClientList::onDeletedClient);
+	connect(Connector::getInstance(), &Connector::deletedClient, _clientList, &ClientList::onDeletedClient);
+	connect(Connector::getInstance(), &Connector::deletedMessage, _chatDisplay, &ChatDisplay::onDeletedMessage);
+	connect(Connector::getInstance(), &Connector::changedMessage, _chatDisplay, &ChatDisplay::onChangedMessage);
+	connect(Connector::getInstance(), &Connector::addedByClient, _clientList, &ClientList::addNewClient);
+//    connect(Connector::getInstance(), &Connector::loadedChannelInfo, _chatDisplay, &ChatDisplay::onLoadedChannelInfo);
+//    connect(Connector::getInstance(), &Connector::loadedGroupInfo, _chatDisplay, &ChatDisplay::onLoadedGroupInfo);
+
+	Connector::getInstance()->loadClientList();
+
+	for (int i = 0; i < Connector::getInstance()->getListOfClient().size(); ++i)
+	{
+		_clientList->addNewClient(Connector::getInstance()->getListOfClient()[i]->getInfo()->getID(),
+			Connector::getInstance()->getListOfClient()[i]->getInfo());
+	}
+
+	Connector::getInstance()->loadListOfFriends();
 
 }
 
-void MessengerWindow::addNewChat(ClientLabel *label)
+void MessengerWindow::onAddedNewClient(ClientLabel *label)
 {
-    qDebug() << "check";
-    connect(label, &ClientLabel::clicked, _chatDisplay, &ChatDisplay::addNewChat);
+    connect(label, &ClientLabel::clicked, _chatDisplay, &ChatDisplay::onClientLabelClicked);
+}
+
+void MessengerWindow::onLoadedClientList()
+{
+	for (int i = 0; i < Connector::getInstance()->getListOfClient().size(); ++i)
+	{
+		_clientList->addNewClient(Connector::getInstance()->getListOfClient()[i]->getInfo()->getID(),
+			Connector::getInstance()->getListOfClient()[i]->getInfo());
+	}
 }
 
 MessengerWindow::~MessengerWindow()

@@ -22,26 +22,26 @@ static const quint8 clientLoadChannelInfo = 41;
 static const quint8 clientLoadGroupInfo = 42;
 
 static const quint8 clientGetFriendsList = 43;
-static const quint8 clientSendNewUserInfo = 44; //done
+static const quint8 clientSendNewUserInfo = 44;
 static const quint8 clientLoadChannelSubs = 45;
 static const quint8 clientLoadGroupUsers = 46;
-static const quint8 clientDeleteSubFromChannel = 47; //done
-static const quint8 clientDeleteUserFromGroup = 48; //done
-static const quint8 clientSendNewChannelInfo = 49; //done
-static const quint8 clientSendNewGroupInfo = 60; //done
-static const quint8 clientInviteUserToGroup = 61; //done
-static const quint8 clientSendNewChannel = 62;  //done
-static const quint8 clientSendNewGroup = 63;    //done
-static const quint8 clientDeleteChannel = 64;   //done
-static const quint8 clientDeleteGroup = 65;     //done
-static const quint8 clientLeaveChannel = 66;    //done
-static const quint8 clientLeaveGroup = 67;      //done
-static const quint8 clientSearch = 68;          //done
-static const quint8 clientStartNewDialog = 69;  //done
-static const quint8 clientJoinToChannel = 80;   //done
-static const quint8 clientJoinToGroup = 81;     //done
-static const quint8 clientDeleteMessage = 82;   //done
-static const quint8 clientEditMessage = 83;     //done
+static const quint8 clientDeleteSubFromChannel = 47;
+static const quint8 clientDeleteUserFromGroup = 48;
+static const quint8 clientSendNewChannelInfo = 49;
+static const quint8 clientSendNewGroupInfo = 60;
+static const quint8 clientInviteUserToGroup = 61;
+static const quint8 clientSendNewChannel = 62;
+static const quint8 clientSendNewGroup = 63;
+static const quint8 clientDeleteChannel = 64;
+static const quint8 clientDeleteGroup = 65;
+static const quint8 clientLeaveChannel = 66;
+static const quint8 clientLeaveGroup = 67;
+static const quint8 clientSearch = 68;
+static const quint8 clientStartNewDialog = 69;
+static const quint8 clientJoinToChannel = 80;
+static const quint8 clientJoinToGroup = 81;
+static const quint8 clientDeleteMessage = 82;
+static const quint8 clientEditMessage = 83;
 static const quint8 clientAddToFriendsList = 84;
 static const quint8 clientDeleteFriend = 85;
 static const quint8 clientInviteUserToChannel = 86;
@@ -93,6 +93,7 @@ static const quint8 errorRegLogin = 31;
 static const quint8 errorAuth = 32;
 static const quint8 errorUserIsNotExist = 33;
 static const quint8 errorLoginIsExistAlready = 34;
+
 }
 
 #endif // LISTOFCOMMANDS_H

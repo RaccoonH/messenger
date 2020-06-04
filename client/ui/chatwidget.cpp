@@ -14,29 +14,51 @@ ChatWidget::ChatWidget(QWidget *parent) : QScrollArea(parent)
     _layout->setAlignment(Qt::AlignBottom);
     _layout->setSpacing(2);
     _layout->setMargin(0);
-    _layout->setDirection(QBoxLayout::BottomToTop);
+    _layout->setDirection(QBoxLayout::TopToBottom);
 
     _layout->setSizeConstraint(QLayout::SetFixedSize);
+
+    ensureVisible(0,0);
 
     setWidget(_widget);
 }
 
+Chat* ChatWidget::getChat()
+{
+    return _chat;
+}
+
 void ChatWidget::addNewMessage(Message *msg)
 {
-    MessageWidget *message = new MessageWidget(msg, this);
-    _listOfMsgWidget.append(message);
-    _layout->addWidget(message);
+    MessageWidget *messageWidget = new MessageWidget(msg, this);
+    _listOfMsgWidget.append(messageWidget);
+	connect(messageWidget, &MessageWidget::clicked, this, &ChatWidget::onMessageWidgetClicked);
+    _layout->addWidget(messageWidget);
 }
 
 void ChatWidget::selectChat(Chat *chat)
 {
     _chat = chat;
     clearChat();
-    qDebug() << chat->getListOfMessages().count();
     for(int i = 0; i < chat->getListOfMessages().count(); i++)
     {
         addNewMessage(chat->getListOfMessages()[i]);
     }
+}
+
+void ChatWidget::deleteMessageWidget(MessageWidget *pointer)
+{
+	_listOfMsgWidget.removeOne(pointer);
+	delete pointer;
+}
+
+void ChatWidget::deleteMessageWidget(unsigned int id, QDateTime date)
+{
+	clearChat();
+	for (int i = 0; i < _chat->getListOfMessages().count(); i++)
+	{
+		addNewMessage(_chat->getListOfMessages()[i]);
+	}
 }
 
 void ChatWidget::clearChat()
@@ -46,6 +68,27 @@ void ChatWidget::clearChat()
         delete _listOfMsgWidget[i];
     }
     _listOfMsgWidget.clear();
+}
+
+void ChatWidget::onMessageWidgetClicked(Message* msg, MessageWidget *pointer)
+{
+	emit messageWidgetClicked(msg, pointer);
+}
+
+void ChatWidget::editMessageWidget(MessageWidget *pointer)
+{
+	pointer->updateNewText();
+}
+
+void ChatWidget::editMessageWidget(Message *msg)
+{
+	for (int i = 0; i < _listOfMsgWidget.count(); i++)
+	{
+		if (_listOfMsgWidget[i]->getMessage() == msg)
+		{
+			_listOfMsgWidget[i]->updateNewText();
+		}
+	}
 }
 
 ChatWidget::~ChatWidget()

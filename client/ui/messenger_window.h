@@ -6,6 +6,7 @@
 #include <QLabel>
 #include "clientlist.h"
 #include "chatdisplay.h"
+#include "connector.h"
 
 class MessengerWindow : public QWidget
 {
@@ -16,7 +17,8 @@ public:
         ~MessengerWindow();
 
 private slots:
-    void addNewChat(ClientLabel *label);
+    void onAddedNewClient(ClientLabel *label);
+    void onLoadedClientList();
 
 private:
     QHBoxLayout *_messengerWindowLayout;

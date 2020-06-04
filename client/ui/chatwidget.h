@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QScrollArea>
 #include <QList>
+#include <QMenu>
 #include "ui/messagewidget.h"
 #include "chat.h"
 
@@ -18,12 +19,24 @@ public:
 
 public:
     void addNewMessage(Message *msg);
-    void selectChat(Chat *chat);
+	void selectChat(Chat *chat);
+	void deleteMessageWidget(MessageWidget *pointer);
+	void deleteMessageWidget(unsigned int id, QDateTime date);
+	void editMessageWidget(MessageWidget *pointer);
+	void editMessageWidget(Message*);
+    Chat* getChat();
+
+public slots:
+	void onMessageWidgetClicked(Message *msg, MessageWidget *pointer);
+
+signals:
+	void messageWidgetClicked(Message *msg, MessageWidget *pointer);
 
 private:
     void clearChat();
 
 private:
+	QMenu *_menu;
     QWidget *_widget;
     QVBoxLayout *_layout;
     QPalette _pall;

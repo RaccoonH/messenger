@@ -29,15 +29,14 @@ SOURCES += \
         database_connector.cpp \
         main.cpp \
         mainwindow.cpp \
-        message.cpp \
         server.cpp
 
 HEADERS += \
         client.h \
+        data_struct.h \
         database_connector.h \
         listofcommands.h \
         mainwindow.h \
-        message.h \
         server.h
 
 # Default rules for deployment.
